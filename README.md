@@ -18,10 +18,13 @@ BUMS is a centralized, mobile-first, smart-matching application designed to conn
 
 ```
 comdweb/
-├── index.html      # Main HTML file
-├── styles.css      # CSS styling
-├── script.js       # JavaScript for interactivity
-└── README.md       # Project documentation
+├── index.html         # Main concept website
+├── styles.css          # CSS styling for concept site
+├── script.js           # JavaScript for concept site
+├── prototype.html      # Interactive prototype demo
+├── prototype.css       # CSS styling for prototype
+├── prototype.js        # JavaScript for prototype functionality
+└── README.md           # Project documentation
 ```
 
 ## Sections
@@ -45,8 +48,24 @@ The website includes the following sections:
 ## Getting Started
 
 1. Clone or download this repository
-2. Open `index.html` in a web browser
-3. No build process or dependencies required - it's a static website!
+2. Open `index.html` in a web browser to view the concept website
+3. Open `prototype.html` to try the interactive prototype
+4. No build process or dependencies required - it's a static website!
+
+## Prototype Features
+
+The interactive prototype (`prototype.html`) demonstrates:
+
+- **Login System**: Role selection (Mentee/Mentor)
+- **Dashboard**: Overview with stats and recommended matches
+- **Smart Matching**: AI-powered matching algorithm simulation
+- **Mentor Profiles**: Detailed mentor information and expertise
+- **Chat Interface**: Real-time messaging simulation
+- **Session Scheduling**: 15-minute micro-mentoring session booking
+- **My Sessions**: View upcoming and past mentoring sessions
+- **My Chats**: List of active conversations
+
+All features are fully interactive and use mock data for demonstration purposes.
 
 ## Browser Support
 
