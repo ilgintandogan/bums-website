@@ -1,0 +1,38 @@
+<svg width="80" height="80" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+  <!-- Shield Shape -->
+  <path d="M40 5 L10 15 L10 40 Q10 60 40 75 Q70 60 70 40 L70 15 Z" 
+        stroke="#4B2C7A" 
+        stroke-width="2" 
+        fill="none"/>
+  
+  <!-- Letter B -->
+  <text x="40" y="35" 
+        font-family="Inter, Arial, sans-serif" 
+        font-size="32" 
+        font-weight="bold" 
+        fill="#1a4d8c" 
+        text-anchor="middle" 
+        alignment-baseline="middle">B</text>
+  
+  <!-- Larger figure (mentor) -->
+  <circle cx="32" cy="52" r="4" fill="#4B2C7A"/>
+  <rect x="28" y="56" width="8" height="8" rx="1" fill="#4B2C7A"/>
+  
+  <!-- Smaller figure (mentee) -->
+  <circle cx="45" cy="55" r="3" fill="#4B2C7A"/>
+  <rect x="42" y="58" width="6" height="6" rx="1" fill="#4B2C7A"/>
+  
+  <!-- Arrow from smaller to larger -->
+  <path d="M48 58 L35 54" 
+        stroke="#4B2C7A" 
+        stroke-width="2" 
+        fill="none" 
+        marker-end="url(#arrowhead)"/>
+  <defs>
+    <marker id="arrowhead" markerWidth="6" markerHeight="6" 
+            refX="5" refY="3" orient="auto">
+      <polygon points="0 0, 6 3, 0 6" fill="#4B2C7A"/>
+    </marker>
+  </defs>
+</svg>
+
