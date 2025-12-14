@@ -127,9 +127,11 @@ function loginAs(role) {
     try {
         if (role === 'mentee') {
             showScreen('mentee-dashboard');
+        } else if (role === 'mentor') {
+            showScreen('mentor-dashboard');
         } else {
-            // For demo, show mentee dashboard (mentor dashboard can be added later)
-            showScreen('mentee-dashboard');
+            console.error('Invalid role:', role);
+            alert('Invalid role selected. Please try again.');
         }
     } catch (error) {
         console.error('Error in loginAs:', error);
