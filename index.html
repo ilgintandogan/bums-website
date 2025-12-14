@@ -15,15 +15,20 @@
     <nav class="navbar">
         <div class="container">
             <div class="nav-brand">
-                <h1>BUMS</h1>
-                <span class="subtitle">Bilkent University Enhanced Mentorship System</span>
+                <div class="logo-container">
+                    <img src="logo.svg" alt="BUMS Logo" class="logo-img">
+                    <div class="logo-text">
+                        <h1>BUMS</h1>
+                        <span class="subtitle">BILKENT UNIVERSITY MENTORSHIP SYSTEM</span>
+                    </div>
+                </div>
             </div>
             <ul class="nav-menu">
-                <li><a href="#overview">Overview</a></li>
-                <li><a href="#problem">Problem</a></li>
-                <li><a href="#solution">Solution</a></li>
-                <li><a href="#benchmarking">Benchmarking</a></li>
-                <li><a href="#feasibility">Feasibility</a></li>
+                <li><a href="#" class="active">Dashboard</a></li>
+                <li><a href="prototype.html">Find a Mentor</a></li>
+                <li><a href="#my-mentorships">My Mentorships</a></li>
+                <li><a href="#resources">Resources</a></li>
+                <li><a href="#profile">Profile</a></li>
             </ul>
             <button class="mobile-menu-toggle" aria-label="Toggle menu">
                 <span></span>
@@ -36,27 +41,48 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="container">
-            <div class="hero-content">
-                <h1 class="hero-title">Transforming Student Success Through Smart Mentorship</h1>
-                <p class="hero-subtitle">A centralized, mobile-first platform connecting Bilkent students with alumni for targeted, low-commitment micro-mentoring sessions</p>
-                <div class="hero-stats">
-                    <div class="stat-item">
-                        <div class="stat-number">15-min</div>
-                        <div class="stat-label">Micro-Mentoring</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">75%+</div>
-                        <div class="stat-label">Target Match Rate</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">100%</div>
-                        <div class="stat-label">Centralized Access</div>
+            <div class="hero-wrapper">
+                <div class="hero-content">
+                    <h1 class="hero-title">Connect. Learn. Grow.</h1>
+                    <p class="hero-subtitle">Find your path with expert guidance from Bilkent alumni network.</p>
+                    <div class="hero-cta">
+                        <a href="prototype.html" class="cta-button">
+                            Get Started - Find a Mentor
+                        </a>
                     </div>
                 </div>
-                <div class="hero-cta">
-                    <a href="prototype.html" class="cta-button">
-                        <i class="fas fa-rocket"></i> Try Interactive Prototype
-                    </a>
+                <div class="hero-image">
+                    <div class="hero-image-placeholder">
+                        <i class="fas fa-users" style="font-size: 8rem; opacity: 0.3; color: var(--primary-color);"></i>
+                        <div class="network-pattern"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="section">
+        <div class="container">
+            <h2 class="section-title">How It Works</h2>
+            <div class="how-it-works-grid">
+                <div class="how-it-works-card">
+                    <div class="how-it-works-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3>1. Smart Matching</h3>
+                </div>
+                <div class="how-it-works-card">
+                    <div class="how-it-works-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3>2. Micro-Mentoring Sessions</h3>
+                </div>
+                <div class="how-it-works-card">
+                    <div class="how-it-works-icon">
+                        <i class="fas fa-user-friends"></i>
+                    </div>
+                    <h3>3. Achieve Your Goals</h3>
                 </div>
             </div>
         </div>
@@ -288,19 +314,15 @@
                     <p>Bilkent University Enhanced Mentorship System</p>
                 </div>
                 <div class="footer-links">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="#overview">Overview</a></li>
-                        <li><a href="#problem">Problem</a></li>
-                        <li><a href="#solution">Solution</a></li>
-                        <li><a href="#benchmarking">Benchmarking</a></li>
-                        <li><a href="#feasibility">Feasibility</a></li>
-                    </ul>
+                    <a href="#about">About Us</a>
+                </div>
+                <div class="footer-social">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
                 </div>
                 <div class="footer-contact">
-                    <h4>Contact</h4>
-                    <p>Bilkent University</p>
-                    <p>Ankara, Turkey</p>
+                    <a href="#faq">FAQ</a>
+                    <a href="#contact">Contact</a>
                 </div>
             </div>
             <div class="footer-bottom">
