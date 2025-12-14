@@ -12,46 +12,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body class="prototype-body">
-    <script>
-        // CRITICAL: Define login function BEFORE any HTML that uses it
-        window.loginAs = function(role) {
-            console.log('=== LOGIN CLICKED ===');
-            console.log('Role:', role);
-            
-            // Get all screens
-            const allScreens = document.querySelectorAll('.screen');
-            console.log('Total screens found:', allScreens.length);
-            
-            // Hide all
-            allScreens.forEach(s => {
-                s.classList.remove('active');
-                console.log('Hidden:', s.id);
-            });
-            
-            // Show appropriate dashboard based on role
-            let dashboardId = role === 'mentee' ? 'mentee-dashboard' : 'mentor-dashboard';
-            const dashboard = document.getElementById(dashboardId);
-            console.log('Dashboard element:', dashboard, 'for role:', role);
-            
-            if (dashboard) {
-                dashboard.classList.add('active');
-                console.log('✓ SUCCESS: Dashboard is now active');
-                
-                // Load content
-                setTimeout(() => {
-                    if (role === 'mentee' && window.loadDashboard) {
-                        window.loadDashboard();
-                    } else if (role === 'mentor' && window.loadMentorDashboard) {
-                        window.loadMentorDashboard();
-                    }
-                }, 50);
-            } else {
-                console.error('✗ FAILED: Dashboard not found!', dashboardId);
-                alert('Error: Dashboard not found. Check console.');
-            }
-        };
-        console.log('✓ loginAs function ready');
-    </script>
     
     <!-- Login Screen -->
     <div id="login-screen" class="screen active">
@@ -61,14 +21,14 @@
                 <p>Bilkent University Enhanced Mentorship System</p>
             </div>
             <div class="login-options">
-                <button class="login-btn mentee-btn" onclick="if(typeof window.loginAs === 'function') { window.loginAs('mentee'); } else { alert('Error: loginAs function not found. Check console.'); console.error('loginAs not available'); }">
+                <a href="mentee.html" class="login-btn mentee-btn">
                     <i class="fas fa-user-graduate"></i>
                     <span>Login as Mentee</span>
-                </button>
-                <button class="login-btn mentor-btn" onclick="if(typeof window.loginAs === 'function') { window.loginAs('mentor'); } else { alert('Error: loginAs function not found. Check console.'); console.error('loginAs not available'); }">
+                </a>
+                <a href="mentor.html" class="login-btn mentor-btn">
                     <i class="fas fa-chalkboard-teacher"></i>
                     <span>Login as Mentor</span>
-                </button>
+                </a>
             </div>
             <div class="demo-note">
                 <i class="fas fa-info-circle"></i>
@@ -566,23 +526,6 @@
     </div>
 
     <script src="prototype.js"></script>
-    <script>
-        // Test that functions are available after script loads
-        window.addEventListener('load', function() {
-            console.log('=== PAGE LOADED ===');
-            console.log('loginAs available:', typeof window.loginAs);
-            console.log('showScreen available:', typeof window.showScreen);
-            console.log('logout available:', typeof window.logout);
-            
-            // Test button clicks work
-            document.querySelectorAll('button[onclick]').forEach(btn => {
-                const onclick = btn.getAttribute('onclick');
-                if (onclick) {
-                    console.log('Button found with onclick:', onclick.substring(0, 50));
-                }
-            });
-        });
-    </script>
 </body>
 </html>
 
