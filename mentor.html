@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BUMS - Mentor Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="prototype.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="prototype-body">
+    <!-- Mentor Dashboard -->
+    <div id="mentor-dashboard" class="screen active">
+        <nav class="prototype-nav">
+            <div class="nav-content">
+                <div class="nav-brand">
+                    <div class="logo-container">
+                        <img src="logo.svg" alt="BUMS Logo" class="logo-img">
+                        <div class="logo-text">
+                            <h2>BUMS</h2>
+                            <span class="subtitle">BILKENT UNIVERSITY MENTORSHIP SYSTEM</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="nav-user">
+                    <span class="user-name">Mentor User</span>
+                    <a href="prototype.html" class="logout-btn">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </a>
+                </div>
+            </div>
+        </nav>
+
+        <div class="dashboard-container">
+            <div class="dashboard-header">
+                <h1>Welcome, Mentor!</h1>
+                <p>Help students achieve their career goals through micro-mentoring</p>
+            </div>
+
+            <!-- Quick Stats -->
+            <div class="stats-row">
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-user-check"></i></div>
+                    <div class="stat-info">
+                        <div class="stat-number">8</div>
+                        <div class="stat-label">Pending Requests</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-calendar-check"></i></div>
+                    <div class="stat-info">
+                        <div class="stat-number">5</div>
+                        <div class="stat-label">Upcoming Sessions</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-star"></i></div>
+                    <div class="stat-info">
+                        <div class="stat-number">4.9</div>
+                        <div class="stat-label">Average Rating</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-users"></i></div>
+                    <div class="stat-info">
+                        <div class="stat-number">24</div>
+                        <div class="stat-label">Total Mentees</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="action-buttons">
+                <button class="action-btn primary" onclick="showScreen('mentor-requests')">
+                    <i class="fas fa-inbox"></i> View Requests
+                </button>
+                <button class="action-btn secondary" onclick="showScreen('mentor-sessions')">
+                    <i class="fas fa-calendar"></i> My Sessions
+                </button>
+                <button class="action-btn secondary" onclick="showScreen('mentor-profile-edit')">
+                    <i class="fas fa-user-edit"></i> Edit Profile
+                </button>
+            </div>
+
+            <!-- Pending Requests -->
+            <div class="section-title">Pending Mentorship Requests</div>
+            <div class="requests-list" id="mentor-requests-container">
+                <!-- Requests will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Mentor Requests Screen -->
+    <div id="mentor-requests" class="screen">
+        <nav class="prototype-nav">
+            <div class="nav-content">
+                <button class="back-btn" onclick="showScreen('mentor-dashboard')">
+                    <i class="fas fa-arrow-left"></i> Back
+                </button>
+                <h2>Mentorship Requests</h2>
+            </div>
+        </nav>
+
+        <div class="requests-container">
+            <div class="requests-list" id="all-requests-list">
+                <!-- All requests will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Mentor Sessions Screen -->
+    <div id="mentor-sessions" class="screen">
+        <nav class="prototype-nav">
+            <div class="nav-content">
+                <button class="back-btn" onclick="showScreen('mentor-dashboard')">
+                    <i class="fas fa-arrow-left"></i> Back
+                </button>
+                <h2>My Sessions</h2>
+            </div>
+        </nav>
+
+        <div class="sessions-container">
+            <div class="session-tabs">
+                <button class="tab-btn active" onclick="switchTab('upcoming')">Upcoming</button>
+                <button class="tab-btn" onclick="switchTab('past')">Past</button>
+            </div>
+
+            <div class="sessions-list" id="mentor-sessions-list">
+                <!-- Sessions populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Mentor Profile Edit Screen -->
+    <div id="mentor-profile-edit" class="screen">
+        <nav class="prototype-nav">
+            <div class="nav-content">
+                <button class="back-btn" onclick="showScreen('mentor-dashboard')">
+                    <i class="fas fa-arrow-left"></i> Back
+                </button>
+                <h2>Edit Profile</h2>
+            </div>
+        </nav>
+
+        <div class="profile-edit-container">
+            <div class="profile-edit-card">
+                <h3>Your Profile Information</h3>
+                <div class="form-group">
+                    <label>Current Position</label>
+                    <input type="text" value="Software Engineer at Google" class="form-input">
+                </div>
+                <div class="form-group">
+                    <label>Areas of Expertise</label>
+                    <div class="expertise-tags">
+                        <span class="tag editable">Software Engineering <i class="fas fa-times"></i></span>
+                        <span class="tag editable">Career Planning <i class="fas fa-times"></i></span>
+                        <span class="tag editable">Interview Prep <i class="fas fa-times"></i></span>
+                    </div>
+                    <input type="text" placeholder="Add expertise area" class="form-input" style="margin-top: 0.5rem;">
+                </div>
+                <div class="form-group">
+                    <label>Bio</label>
+                    <textarea class="form-textarea" rows="4">I'm a software engineer at Google with 6 years of experience. I specialize in backend systems and love helping students navigate their tech careers.</textarea>
+                </div>
+                <div class="form-group">
+                    <label>Availability</label>
+                    <select class="form-input">
+                        <option>High - Available for multiple sessions per week</option>
+                        <option>Medium - Available for 2-3 sessions per week</option>
+                        <option>Low - Available for 1 session per week</option>
+                    </select>
+                </div>
+                <button class="action-btn primary full-width">
+                    <i class="fas fa-save"></i> Save Changes
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="success-modal" class="modal">
+        <div class="modal-content">
+            <div class="success-icon"><i class="fas fa-check-circle"></i></div>
+            <h2 id="success-title">Success!</h2>
+            <p id="success-message">Your action was completed successfully.</p>
+            <button class="action-btn primary" onclick="closeModal()">OK</button>
+        </div>
+    </div>
+
+    <script src="prototype.js"></script>
+    <script>
+        // Initialize mentor dashboard on load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Show mentor dashboard by default
+            showScreen('mentor-dashboard');
+            // Load mentor dashboard content
+            if (typeof loadMentorDashboard === 'function') {
+                loadMentorDashboard();
+            }
+        });
+    </script>
+</body>
+</html>
+
