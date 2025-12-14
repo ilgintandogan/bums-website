@@ -1,1 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BUMS - Mentee Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="prototype.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="prototype-body">
+    <!-- Mentee Dashboard -->
+    <div id="mentee-dashboard" class="screen active">
+        <nav class="prototype-nav">
+            <div class="nav-content">
+                <div class="nav-brand">
+                    <div class="logo-container">
+                        <img src="logo.svg" alt="BUMS Logo" class="logo-img">
+                        <div class="logo-text">
+                            <h2>BUMS</h2>
+                            <span class="subtitle">BILKENT UNIVERSITY MENTORSHIP SYSTEM</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="nav-user">
+                    <span class="user-name">Student User</span>
+                    <a href="prototype.html" class="logout-btn">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </a>
+                </div>
+            </div>
+        </nav>
+
+        <div class="dashboard-container">
+            <div class="dashboard-header">
+                <h1>Welcome back!</h1>
+                <p>Find the perfect mentor for your career questions</p>
+            </div>
+
+            <!-- Quick Stats -->
+            <div class="stats-row">
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-search"></i></div>
+                    <div class="stat-info">
+                        <div class="stat-number">12</div>
+                        <div class="stat-label">Available Matches</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-calendar-check"></i></div>
+                    <div class="stat-info">
+                        <div class="stat-number">3</div>
+                        <div class="stat-label">Upcoming Sessions</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-comments"></i></div>
+                    <div class="stat-info">
+                        <div class="stat-number">5</div>
+                        <div class="stat-label">Active Chats</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="action-buttons">
+                <button class="action-btn primary" onclick="showScreen('matching')">
+                    <i class="fas fa-magic"></i> Find My Match
+                </button>
+                <button class="action-btn secondary" onclick="showScreen('my-sessions')">
+                    <i class="fas fa-calendar"></i> My Sessions
+                </button>
+                <button class="action-btn secondary" onclick="showScreen('my-chats')">
+                    <i class="fas fa-comments"></i> My Chats
+                </button>
+            </div>
+
+            <!-- Recent Matches -->
+            <div class="section-title">Recommended Matches</div>
+            <div class="matches-grid" id="matches-container">
+                <!-- Matches will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Matching Screen -->
+    <div id="matching" class="screen">
+        <nav class="prototype-nav">
+            <div class="nav-content">
+                <button class="back-btn" onclick="showScreen('mentee-dashboard')">
+                    <i class="fas fa-arrow-left"></i> Back
+                </button>
+                <h2>Smart Matching</h2>
+            </div>
+        </nav>
+
+        <div class="matching-container">
+            <div class="matching-header">
+                <h1>Find Your Perfect Mentor</h1>
+                <p>Our AI-powered algorithm matches you based on your needs, expertise areas, and goals</p>
+            </div>
+
+            <!-- Matching Criteria -->
+            <div class="matching-criteria">
+                <h3>Your Matching Criteria</h3>
+                <div class="criteria-tags">
+                    <span class="tag">Computer Science</span>
+                    <span class="tag">Career Planning</span>
+                    <span class="tag">Industry Transition</span>
+                    <span class="tag">Anxiety Level: Medium</span>
+                </div>
+                <button class="edit-criteria-btn" onclick="alert('Profile editing feature coming soon!')">
+                    <i class="fas fa-edit"></i> Edit Profile
+                </button>
+            </div>
+
+            <!-- Matching Process Animation -->
+            <div class="matching-process">
+                <div class="matching-animation">
+                    <div class="pulse-circle"></div>
+                    <div class="matching-text">Analyzing your profile...</div>
+                </div>
+            </div>
+
+            <!-- Match Results -->
+            <div class="match-results" id="match-results">
+                <h3>Your Top Matches</h3>
+                <div class="matches-list" id="matches-list">
+                    <!-- Matches populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mentor Profile View -->
+    <div id="mentor-profile" class="screen">
+        <nav class="prototype-nav">
+            <div class="nav-content">
+                <button class="back-btn" onclick="showScreen('matching')">
+                    <i class="fas fa-arrow-left"></i> Back
+                </button>
+                <h2>Mentor Profile</h2>
+            </div>
+        </nav>
+
+        <div class="profile-container">
+            <div class="profile-header" id="profile-header">
+                <!-- Populated by JavaScript -->
+            </div>
+            <div class="profile-content" id="profile-content">
+                <!-- Populated by JavaScript -->
+            </div>
+            <div class="profile-actions">
+                <button class="action-btn primary" onclick="requestSession()">
+                    <i class="fas fa-video"></i> Request 15-min Session
+                </button>
+                <button class="action-btn secondary" onclick="startChat()">
+                    <i class="fas fa-comment"></i> Start Chat
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chat Interface -->
+    <div id="chat-screen" class="screen">
+        <nav class="prototype-nav">
+            <div class="nav-content">
+                <button class="back-btn" onclick="showScreen('mentee-dashboard')">
+                    <i class="fas fa-arrow-left"></i> Back
+                </button>
+                <div class="chat-header-info">
+                    <div class="chat-avatar">JD</div>
+                    <div>
+                        <h3>John Doe</h3>
+                        <span class="chat-status">Software Engineer at Google</span>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <div class="chat-container">
+            <div class="chat-messages" id="chat-messages">
+                <div class="message received">
+                    <div class="message-content">
+                        <p>Hi! I saw your request for career advice. I'd be happy to help you with your transition into tech!</p>
+                        <span class="message-time">10:30 AM</span>
+                    </div>
+                </div>
+                <div class="message sent">
+                    <div class="message-content">
+                        <p>Thank you so much! I'm really interested in learning about the software engineering interview process.</p>
+                        <span class="message-time">10:32 AM</span>
+                    </div>
+                </div>
+                <div class="message received">
+                    <div class="message-content">
+                        <p>Great! I can share my experience and some tips. Would you like to schedule a quick 15-minute call to discuss this?</p>
+                        <span class="message-time">10:33 AM</span>
+                    </div>
+                </div>
+            </div>
+            <div class="chat-input-container">
+                <input type="text" class="chat-input" id="chat-input" placeholder="Type your message...">
+                <button class="send-btn" onclick="sendMessage()">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Session Scheduling -->
+    <div id="schedule-screen" class="screen">
+        <nav class="prototype-nav">
+            <div class="nav-content">
+                <button class="back-btn" onclick="showScreen('mentor-profile')">
+                    <i class="fas fa-arrow-left"></i> Back
+                </button>
+                <h2>Schedule Session</h2>
+            </div>
+        </nav>
+
+        <div class="schedule-container">
+            <div class="schedule-header">
+                <h1>Book a 15-Minute Session</h1>
+                <p>Select an available time slot for your micro-mentoring session</p>
+            </div>
+
+            <div class="mentor-info-card">
+                <div class="mentor-avatar">JD</div>
+                <div>
+                    <h3>John Doe</h3>
+                    <p>Software Engineer at Google | Bilkent CS '18</p>
+                </div>
+            </div>
+
+            <div class="calendar-section">
+                <h3>Available Time Slots</h3>
+                <div class="time-slots-grid">
+                    <div class="time-slot available" onclick="selectTimeSlot(this)">
+                        <div class="date">Today</div>
+                        <div class="time">2:00 PM - 2:15 PM</div>
+                    </div>
+                    <div class="time-slot available" onclick="selectTimeSlot(this)">
+                        <div class="date">Today</div>
+                        <div class="time">4:30 PM - 4:45 PM</div>
+                    </div>
+                    <div class="time-slot available" onclick="selectTimeSlot(this)">
+                        <div class="date">Tomorrow</div>
+                        <div class="time">10:00 AM - 10:15 AM</div>
+                    </div>
+                    <div class="time-slot available" onclick="selectTimeSlot(this)">
+                        <div class="date">Tomorrow</div>
+                        <div class="time">3:00 PM - 3:15 PM</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="session-notes">
+                <h3>Session Topic</h3>
+                <textarea class="notes-input" placeholder="Briefly describe what you'd like to discuss (optional)"></textarea>
+            </div>
+
+            <button class="action-btn primary full-width" onclick="confirmBooking()">
+                <i class="fas fa-calendar-check"></i> Confirm Booking
+            </button>
+        </div>
+    </div>
+
+    <!-- My Sessions Screen -->
+    <div id="my-sessions" class="screen">
+        <nav class="prototype-nav">
+            <div class="nav-content">
+                <button class="back-btn" onclick="showScreen('mentee-dashboard')">
+                    <i class="fas fa-arrow-left"></i> Back
+                </button>
+                <h2>My Sessions</h2>
+            </div>
+        </nav>
+
+        <div class="sessions-container">
+            <div class="session-tabs">
+                <button class="tab-btn active" onclick="switchTab('upcoming')">Upcoming</button>
+                <button class="tab-btn" onclick="switchTab('past')">Past</button>
+            </div>
+
+            <div class="sessions-list" id="sessions-list">
+                <!-- Sessions populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- My Chats Screen -->
+    <div id="my-chats" class="screen">
+        <nav class="prototype-nav">
+            <div class="nav-content">
+                <button class="back-btn" onclick="showScreen('mentee-dashboard')">
+                    <i class="fas fa-arrow-left"></i> Back
+                </button>
+                <h2>My Chats</h2>
+            </div>
+        </nav>
+
+        <div class="chats-list-container">
+            <div class="chat-item" onclick="showScreen('chat-screen')">
+                <div class="chat-avatar">JD</div>
+                <div class="chat-item-info">
+                    <div class="chat-item-name">John Doe</div>
+                    <div class="chat-item-preview">Great! I can share my experience...</div>
+                </div>
+                <div class="chat-item-time">10:33 AM</div>
+            </div>
+            <div class="chat-item">
+                <div class="chat-avatar">SM</div>
+                <div class="chat-item-info">
+                    <div class="chat-item-name">Sarah Miller</div>
+                    <div class="chat-item-preview">Happy to help with your questions!</div>
+                </div>
+                <div class="chat-item-time">Yesterday</div>
+            </div>
+            <div class="chat-item">
+                <div class="chat-avatar">AK</div>
+                <div class="chat-item-info">
+                    <div class="chat-item-name">Ahmet Kaya</div>
+                    <div class="chat-item-preview">Let me know if you need anything...</div>
+                </div>
+                <div class="chat-item-time">2 days ago</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="success-modal" class="modal">
+        <div class="modal-content">
+            <div class="success-icon"><i class="fas fa-check-circle"></i></div>
+            <h2 id="success-title">Success!</h2>
+            <p id="success-message">Your action was completed successfully.</p>
+            <button class="action-btn primary" onclick="closeModal()">OK</button>
+        </div>
+    </div>
+
+    <script src="prototype.js"></script>
+    <script>
+        // Initialize mentee dashboard on load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Show mentee dashboard by default
+            showScreen('mentee-dashboard');
+            // Load dashboard content
+            if (typeof loadDashboard === 'function') {
+                loadDashboard();
+            }
+        });
+    </script>
+</body>
+</html>
+
 
