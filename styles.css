@@ -165,6 +165,31 @@ body {
     opacity: 0.9;
 }
 
+.hero-cta {
+    margin-top: 3rem;
+}
+
+.cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1.2rem 2.5rem;
+    background: var(--secondary-color);
+    color: white;
+    text-decoration: none;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: var(--transition);
+    box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+}
+
+.cta-button:hover {
+    background: #e55a2b;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
+}
+
 /* Sections */
 .section {
     padding: 5rem 0;
