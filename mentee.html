@@ -14,23 +14,25 @@
 <body class="prototype-body">
     <!-- Mentee Dashboard -->
     <div id="mentee-dashboard" class="screen active">
-        <nav class="prototype-nav">
-            <div class="nav-content">
+        <nav class="navbar">
+            <div class="container">
                 <div class="nav-brand">
                     <div class="logo-container">
                         <img src="logo.svg" alt="BUMS Logo" class="logo-img">
                         <div class="logo-text">
-                            <h2>BUMS</h2>
+                            <h1>BUMS</h1>
                             <span class="subtitle">BILKENT UNIVERSITY MENTORSHIP SYSTEM</span>
                         </div>
                     </div>
                 </div>
-                <div class="nav-user">
-                    <span class="user-name">Student User</span>
-                    <a href="prototype.html" class="logout-btn">
-                        <i class="fas fa-sign-out-alt"></i> Logout
-                    </a>
-                </div>
+                <ul class="nav-menu">
+                    <li><a href="#" class="active">Dashboard</a></li>
+                </ul>
+                <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
             </div>
         </nav>
 
@@ -75,6 +77,9 @@
                 </button>
                 <button class="action-btn secondary" onclick="showScreen('my-chats')">
                     <i class="fas fa-comments"></i> My Chats
+                </button>
+                <button class="action-btn secondary" onclick="showScreen('mentee-profile-edit')">
+                    <i class="fas fa-user-edit"></i> Edit Profile
                 </button>
             </div>
 
@@ -331,6 +336,52 @@
         </div>
     </div>
 
+    <!-- Mentee Profile Edit Screen -->
+    <div id="mentee-profile-edit" class="screen">
+        <nav class="prototype-nav">
+            <div class="nav-content">
+                <button class="back-btn" onclick="showScreen('mentee-dashboard')">
+                    <i class="fas fa-arrow-left"></i> Back
+                </button>
+                <h2>Edit Profile</h2>
+            </div>
+        </nav>
+
+        <div class="profile-edit-container">
+            <div class="profile-edit-card">
+                <h3>Your Profile Information</h3>
+                <div class="form-group">
+                    <label>Current Position</label>
+                    <input type="text" value="Computer Science Student" class="form-input">
+                </div>
+                <div class="form-group">
+                    <label>Areas of Interest</label>
+                    <div class="expertise-tags">
+                        <span class="tag editable">Software Engineering <i class="fas fa-times"></i></span>
+                        <span class="tag editable">Career Planning <i class="fas fa-times"></i></span>
+                        <span class="tag editable">Interview Prep <i class="fas fa-times"></i></span>
+                    </div>
+                    <input type="text" placeholder="Add interest area" class="form-input" style="margin-top: 0.5rem;">
+                </div>
+                <div class="form-group">
+                    <label>Bio</label>
+                    <textarea class="form-textarea" rows="4">I'm a computer science student looking for guidance in my career path.</textarea>
+                </div>
+                <div class="form-group">
+                    <label>Availability</label>
+                    <select class="form-input">
+                        <option>High - Available for multiple sessions per week</option>
+                        <option>Medium - Available for 2-3 sessions per week</option>
+                        <option>Low - Available for 1 session per week</option>
+                    </select>
+                </div>
+                <button class="action-btn primary full-width">
+                    <i class="fas fa-save"></i> Save Changes
+                </button>
+            </div>
+        </div>
+    </div>
+
     <!-- Success Modal -->
     <div id="success-modal" class="modal">
         <div class="modal-content">
@@ -341,7 +392,33 @@
         </div>
     </div>
 
+    <script src="script.js"></script>
     <script src="prototype.js"></script>
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>BUMS</h3>
+                    <p>Bilkent University Enhanced Mentorship System</p>
+                </div>
+                <div class="footer-links">
+                    <a href="#about">About Us</a>
+                </div>
+                <div class="footer-social">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                </div>
+                <div class="footer-contact">
+                    <a href="#faq">FAQ</a>
+                    <a href="#contact">Contact</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Bilkent University Enhanced Mentorship System. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
     <script>
         // Initialize mentee dashboard on load
         document.addEventListener('DOMContentLoaded', function() {
@@ -355,5 +432,4 @@
     </script>
 </body>
 </html>
-
 
