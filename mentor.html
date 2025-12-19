@@ -14,23 +14,25 @@
 <body class="prototype-body">
     <!-- Mentor Dashboard -->
     <div id="mentor-dashboard" class="screen active">
-        <nav class="prototype-nav">
-            <div class="nav-content">
+        <nav class="navbar">
+            <div class="container">
                 <div class="nav-brand">
                     <div class="logo-container">
                         <img src="logo.svg" alt="BUMS Logo" class="logo-img">
                         <div class="logo-text">
-                            <h2>BUMS</h2>
+                            <h1>BUMS</h1>
                             <span class="subtitle">BILKENT UNIVERSITY MENTORSHIP SYSTEM</span>
                         </div>
                     </div>
                 </div>
-                <div class="nav-user">
-                    <span class="user-name">Mentor User</span>
-                    <a href="prototype.html" class="logout-btn">
-                        <i class="fas fa-sign-out-alt"></i> Logout
-                    </a>
-                </div>
+                <ul class="nav-menu">
+                    <li><a href="#" class="active">Dashboard</a></li>
+                </ul>
+                <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
             </div>
         </nav>
 
@@ -190,7 +192,33 @@
         </div>
     </div>
 
+    <script src="script.js"></script>
     <script src="prototype.js"></script>
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>BUMS</h3>
+                    <p>Bilkent University Enhanced Mentorship System</p>
+                </div>
+                <div class="footer-links">
+                    <a href="#about">About Us</a>
+                </div>
+                <div class="footer-social">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                </div>
+                <div class="footer-contact">
+                    <a href="#faq">FAQ</a>
+                    <a href="#contact">Contact</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Bilkent University Enhanced Mentorship System. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
     <script>
         // Initialize mentor dashboard on load
         document.addEventListener('DOMContentLoaded', function() {
