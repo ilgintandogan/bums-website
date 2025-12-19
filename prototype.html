@@ -15,21 +15,60 @@
     
     <!-- Login Screen -->
     <div id="login-screen" class="screen active">
+        <div class="login-background">
+            <div class="login-background-shapes">
+                <div class="shape shape-1"></div>
+                <div class="shape shape-2"></div>
+                <div class="shape shape-3"></div>
+            </div>
+        </div>
         <div class="login-container">
             <div class="login-header">
-                <h1>BUMS</h1>
+                <div class="login-logo">
+                    <img src="logo.svg" alt="BUMS Logo" class="login-logo-img">
+                </div>
+                <h1>Welcome to BUMS</h1>
                 <p>Bilkent University Enhanced Mentorship System</p>
             </div>
-            <div class="login-options">
-                <a href="mentee.html" class="login-btn mentee-btn">
+            <div id="role-selection" class="login-options">
+                <p class="role-selection-text">Choose your role:</p>
+                <button type="button" id="select-mentee" class="login-btn mentee-btn">
                     <i class="fas fa-user-graduate"></i>
                     <span>Login as Mentee</span>
-                </a>
-                <a href="mentor.html" class="login-btn mentor-btn">
+                </button>
+                <button type="button" id="select-mentor" class="login-btn mentor-btn">
                     <i class="fas fa-chalkboard-teacher"></i>
                     <span>Login as Mentor</span>
-                </a>
+                </button>
             </div>
+            
+            <form id="login-form" class="login-form" style="display: none;">
+                <div class="role-indicator" id="role-indicator">
+                    <i id="role-icon"></i>
+                    <span id="role-text"></span>
+                </div>
+                <div class="form-group">
+                    <label for="username">
+                        <i class="fas fa-user"></i> Username
+                    </label>
+                    <input type="text" id="username" name="username" required autocomplete="username">
+                </div>
+                <div class="form-group">
+                    <label for="password">
+                        <i class="fas fa-lock"></i> Password
+                    </label>
+                    <input type="password" id="password" name="password" required autocomplete="current-password">
+                </div>
+                <div id="login-error" class="error-message" style="display: none;">
+                    <i class="fas fa-exclamation-circle"></i> Invalid username or password
+                </div>
+                <button type="submit" class="login-btn primary-btn">
+                    <i class="fas fa-sign-in-alt"></i> Login
+                </button>
+                <button type="button" id="back-to-role" class="back-to-role-btn">
+                    <i class="fas fa-arrow-left"></i> Back to Role Selection
+                </button>
+            </form>
             <div class="demo-note">
                 <i class="fas fa-info-circle"></i>
                 <span>This is a prototype for presentation purposes</span>
@@ -526,6 +565,98 @@
     </div>
 
     <script src="prototype.js"></script>
+    <script>
+        // Login Form Handler
+        document.addEventListener('DOMContentLoaded', function() {
+            const loginForm = document.getElementById('login-form');
+            const roleSelection = document.getElementById('role-selection');
+            const errorMessage = document.getElementById('login-error');
+            const selectMenteeBtn = document.getElementById('select-mentee');
+            const selectMentorBtn = document.getElementById('select-mentor');
+            const backToRoleBtn = document.getElementById('back-to-role');
+            const roleIndicator = document.getElementById('role-indicator');
+            const roleIcon = document.getElementById('role-icon');
+            const roleText = document.getElementById('role-text');
+            
+            let selectedRole = null;
+            
+            // Handle role selection
+            if (selectMenteeBtn) {
+                selectMenteeBtn.addEventListener('click', function() {
+                    selectedRole = 'mentee';
+                    showLoginForm('mentee');
+                });
+            }
+            
+            if (selectMentorBtn) {
+                selectMentorBtn.addEventListener('click', function() {
+                    selectedRole = 'mentor';
+                    showLoginForm('mentor');
+                });
+            }
+            
+            // Handle back button
+            if (backToRoleBtn) {
+                backToRoleBtn.addEventListener('click', function() {
+                    roleSelection.style.display = 'flex';
+                    loginForm.style.display = 'none';
+                    errorMessage.style.display = 'none';
+                    document.getElementById('username').value = '';
+                    document.getElementById('password').value = '';
+                    selectedRole = null;
+                });
+            }
+            
+            function showLoginForm(role) {
+                // Hide role selection
+                roleSelection.style.display = 'none';
+                
+                // Update role indicator
+                if (role === 'mentee') {
+                    roleIcon.className = 'fas fa-user-graduate';
+                    roleText.textContent = 'Login as Mentee';
+                    roleIndicator.style.borderColor = 'var(--primary-color)';
+                } else {
+                    roleIcon.className = 'fas fa-chalkboard-teacher';
+                    roleText.textContent = 'Login as Mentor';
+                    roleIndicator.style.borderColor = 'var(--secondary-color)';
+                }
+                
+                // Show login form
+                loginForm.style.display = 'block';
+                errorMessage.style.display = 'none';
+            }
+            
+            // Handle form submission
+            if (loginForm) {
+                loginForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const username = document.getElementById('username').value.trim();
+                    const password = document.getElementById('password').value.trim();
+                    
+                    // Check credentials
+                    if (username === 'ilgin' && password === 'ilgin' && selectedRole) {
+                        // Hide error message
+                        errorMessage.style.display = 'none';
+                        
+                        // Redirect based on role
+                        if (selectedRole === 'mentee') {
+                            window.location.href = 'mentee.html';
+                        } else {
+                            window.location.href = 'mentor.html';
+                        }
+                    } else {
+                        // Show error message
+                        errorMessage.style.display = 'flex';
+                        
+                        // Clear password field
+                        document.getElementById('password').value = '';
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 </html>
 
