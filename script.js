@@ -63,7 +63,7 @@ window.addEventListener('scroll', () => {
     lastScroll = currentScroll;
 });
 
-// Intersection Observer for fade-in animations
+// Enhanced Intersection Observer for animations
 const observerOptions = {
     threshold: 0.1,
     rootMargin: '0px 0px -50px 0px'
@@ -72,21 +72,105 @@ const observerOptions = {
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
+            entry.target.classList.add('animated');
+            observer.unobserve(entry.target);
         }
     });
 }, observerOptions);
 
-// Observe all cards and sections
-document.addEventListener('DOMContentLoaded', () => {
-    const animatedElements = document.querySelectorAll('.card, .problem-card, .benchmark-card, .feature-card, .feasibility-card');
+// Staggered animation observer
+const staggerObserverOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+};
+
+const staggerObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry, index) => {
+        if (entry.isIntersecting) {
+            setTimeout(() => {
+                entry.target.classList.add('animated');
+                staggerObserver.unobserve(entry.target);
+            }, index * 100); // Stagger by 100ms
+        }
+    });
+}, staggerObserverOptions);
+
+// Reveal animation observer
+const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+        }
+    });
+}, {
+    threshold: 0.15,
+    rootMargin: '0px 0px -100px 0px'
+});
+
+// Animate numbers (counter effect)
+function animateCounter(element, target, duration = 2000) {
+    const start = 0;
+    const increment = target / (duration / 16);
+    let current = start;
     
-    animatedElements.forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(20px)';
-        el.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
-        observer.observe(el);
+    const timer = setInterval(() => {
+        current += increment;
+        if (current >= target) {
+            element.textContent = target + (element.textContent.includes('%') ? '%' : '');
+            clearInterval(timer);
+        } else {
+            element.textContent = Math.floor(current) + (element.textContent.includes('%') ? '%' : '');
+        }
+    }, 16);
+}
+
+// Observe all animated elements
+document.addEventListener('DOMContentLoaded', () => {
+    // Cards with staggered animation
+    const staggeredElements = document.querySelectorAll('.card, .problem-card, .benchmark-card, .feature-card, .feasibility-card, .how-it-works-card, .security-card, .method-card, .stat-card-large');
+    
+    staggeredElements.forEach((el, index) => {
+        staggerObserver.observe(el);
+    });
+    
+    // Reveal animations
+    const revealElements = document.querySelectorAll('.reveal, .fade-in-up');
+    revealElements.forEach(el => {
+        revealObserver.observe(el);
+    });
+    
+    // Animate stat numbers on scroll
+    const statNumbers = document.querySelectorAll('.stat-number, .stat-number-large');
+    const numberObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && !entry.target.classList.contains('counted')) {
+                entry.target.classList.add('counted');
+                const text = entry.target.textContent;
+                const number = parseInt(text.replace(/\D/g, ''));
+                if (number && !isNaN(number)) {
+                    const originalText = text;
+                    animateCounter(entry.target, number);
+                    // Preserve the original format after animation
+                    setTimeout(() => {
+                        if (originalText.includes('%')) {
+                            entry.target.textContent = number + '%';
+                        }
+                    }, 2000);
+                }
+            }
+        });
+    }, { threshold: 0.5 });
+    
+    statNumbers.forEach(stat => {
+        numberObserver.observe(stat);
+    });
+    
+    // Add hover effects
+    const interactiveCards = document.querySelectorAll('.card, .feature-card, .security-card');
+    interactiveCards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.transition = 'all 0.3s ease';
+        });
     });
 });
 
