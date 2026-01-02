@@ -101,7 +101,4 @@ This project is part of the Bilkent University Enhanced Mentorship System concep
 Bilkent University  
 Ankara, Turkey
 
----
-
-Built with ❤️ for Bilkent University
 
